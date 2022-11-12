@@ -2,18 +2,26 @@
   height: 40px;
   border-radius: 10px;
   padding-left: 12px;
-  border: none;
+  box-sizing: border-box;
+  border: 1px solid #5C87DB;
+  color: #5C5C5C;
 }
 
-.input::placeholder {
+.input, .input::placeholder {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
   display: flex;
-  align-items: center;
+}
+
+.input::placeholder {
   color: #B7BAC1;
+}
+
+.input:hover {
+  border: 1px solid #B7BAC1;
 }
 
 .input:focus-visible {

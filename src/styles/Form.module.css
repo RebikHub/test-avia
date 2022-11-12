@@ -3,25 +3,6 @@
   margin: 70px auto;
 }
 
-.input, .inputCalendar {
-  position: relative;
-}
-
-.input > h5, .inputCalendar > h5 {
-  position: absolute;
-  top: -15px;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 11px;
-  line-height: 13px;
-  color: #FFFFFF;
-}
-
-.inputCalendar > input {
-  padding-left: 36px;
-}
-
 .inputs {
   display: flex;
   align-items: center;
@@ -32,11 +13,55 @@
   border-radius: 15px 15px 0px 0px;
 }
 
+label {
+  position: relative;
+}
+
+label {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #FFFFFF;
+}
+
+input {
+  height: 40px;
+  border-radius: 10px;
+  padding-left: 12px;
+  box-sizing: border-box;
+  border: 1px solid #5C87DB;
+  color: #5C5C5C;
+}
+
+input, input::placeholder {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+}
+
+input::placeholder {
+  color: #B7BAC1;
+}
+
+input:hover {
+  border: 1px solid #B7BAC1;
+}
+
+input:focus-visible {
+  outline: none;
+}
+
 .line {
   position: absolute;
   height: 0;
   width: 55px;
-  top: 20px;
+  top: 34px;
+  right: -40px;
   border-top: 1px #ffffff dashed;
 }
 
@@ -45,7 +70,7 @@
   display: flex;
   width: 16px;
   height: 16px;
-  top: 12px;
+  top: 25px;
   left: 12px;
   cursor: pointer;
 }

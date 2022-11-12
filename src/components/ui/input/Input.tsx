@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 import styles from './Input.module.css';
 
 type Props = {
-  placeholder: string
+  placeholder: string,
+  handleInput: (value: string) => void
 };
 
-export default function Input({placeholder}: Props) {
+type InputEvent = ChangeEvent<HTMLInputElement>;
+
+export default function Input({placeholder, handleInput}: Props) {
+  const [value, setValue] = useState<string>('');
+  const input = useRef<HTMLInputElement>(null);
+
+  function inputText(e: InputEvent): void {
+    setValue(e.target.value);
+    handleInput(e.target.value);
+  };
+
   return (
-    <input className={styles.input} type='text' placeholder={placeholder}/>
+    <input
+      className={styles.input}
+      type='text'
+      placeholder={placeholder}
+      ref={input}
+      value={value}
+      onChange={inputText}
+      />
   );
 };

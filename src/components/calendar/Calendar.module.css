@@ -1,0 +1,111 @@
+.calendarThere{
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  top: 50px;
+  z-index: 1;
+}
+
+.calendarBack {
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  top: 50px;
+  z-index: 1;
+}
+
+.main {
+  margin-top: 5px;
+  filter: drop-shadow(0px 0px 14px rgb(112 121 153 / 30%));
+  background-color: white;
+  border-radius: 10px;
+}
+
+.month {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  border-radius: 10px;
+  border-bottom: 1px solid #C4C4C4;
+}
+
+.month > button {
+  cursor: pointer;
+}
+
+.prevMonth, .nextMonth {
+  width: 45px;
+  border: none;
+  background-size: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: white;
+}
+
+.prevMonth {
+  background-image: url(../../image/left.png);
+  border-radius: 10px 0 0 0;
+}
+
+.nextMonth {
+  background-image: url(../../image/right.png);
+  border-radius: 0 10px 0 0;
+}
+
+.name {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #5C5C5C;
+  text-transform: capitalize;
+  align-self: center;
+}
+
+.table {
+  border-collapse: collapse;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #5C5C5C;
+}
+
+.table > tbody > tr > td {
+  cursor: pointer;
+}
+
+.table > tbody > tr > td:hover {
+  background-color: #C4C4C4;
+}
+
+.table > thead {
+  height: 20px;
+}
+
+.table > tbody > tr:last-child > td:last-child {
+  border-radius: 0 0 10px 0;
+}
+
+.otherMonth {
+  color: #00000030;
+}
+
+.today {
+  box-sizing: border-box;
+  background: rgba(92, 135, 219, 0.3);
+  border: 2px solid #3E67B7;
+  border-radius: 5px;
+}
+
+.weekend {
+  background-color: #00000012;
+}
+
+.none {
+  display: none;
+}

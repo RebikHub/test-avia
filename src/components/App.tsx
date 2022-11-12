@@ -9,6 +9,9 @@ export default function App() {
 
   return (
     <Routes>
+      {/* <Route path='/'>
+        <Route path='/avia' element={<Form/>}/>
+      </Route> */}
       <Route path='/' element={<Button
         text={'Найти'}
         handleClick={() => navigate('/avia')}
