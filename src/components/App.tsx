@@ -1,12 +1,20 @@
-import * as React from 'react';
+import React from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import Form from './Form';
+import Button from './ui/button/Button';
 
 
 export default function App() {
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <header>
-          Learn React
-      </header>
-    </div>
+    <Routes>
+      <Route path='/' element={<Button
+        text={'Найти'}
+        handleClick={() => navigate('/avia')}
+        disabled={false}
+        />}/>
+      <Route path='/avia' element={<Form/>}/>
+    </Routes>
   );
 }

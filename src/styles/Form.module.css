@@ -1,0 +1,62 @@
+.form {
+  width: 962px;
+  margin: 70px auto;
+}
+
+.input, .inputCalendar {
+  position: relative;
+}
+
+.input > h5, .inputCalendar > h5 {
+  position: absolute;
+  top: -15px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #FFFFFF;
+}
+
+.inputCalendar > input {
+  padding-left: 36px;
+}
+
+.inputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  height: 100px;
+  background: #5C87DB;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.line {
+  position: absolute;
+  height: 0;
+  width: 55px;
+  top: 20px;
+  border-top: 1px #ffffff dashed;
+}
+
+.image {
+  position: absolute;
+  display: flex;
+  width: 16px;
+  height: 16px;
+  top: 12px;
+  left: 12px;
+  cursor: pointer;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 30px;
+  height: 86px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 14px rgba(112, 121, 153, 0.3);
+  border-radius: 0px 0px 15px 15px;
+}

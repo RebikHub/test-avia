@@ -1,10 +1,8 @@
 .button {
-  width: 80px;
   height: 40px;
-  background-color: #5C87DB;
   border-radius: 10px;
   border: none;
-
+  padding: 0 20px;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -12,6 +10,25 @@
   line-height: 140%;
   display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   color: #FFFFFF;
+}
+
+.enabled {
+  background-color: #5C87DB;
+  cursor: pointer;
+}
+
+.enabled:hover {
+  background-color: #3E67B7;
+}
+
+.disabled {
+  background-color: #5C87DB;
+  color: rgba(255, 255, 255, 0.5);;
+}
+
+.disabled:hover {
+  background-color: #B7BAC1;
+  cursor: not-allowed;
 }

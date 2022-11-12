@@ -1,0 +1,21 @@
+.input {
+  height: 40px;
+  border-radius: 10px;
+  padding-left: 12px;
+  border: none;
+}
+
+.input::placeholder {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  color: #B7BAC1;
+}
+
+.input:focus-visible {
+  outline: none;
+}
