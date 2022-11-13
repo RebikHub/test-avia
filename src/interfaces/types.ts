@@ -4,3 +4,8 @@ export interface IRoute {
   dateThere: string,
   dateBack: string
 };
+
+export type Hidden = {
+  there: 'none' | 'there',
+  back: 'none' | 'back'
+}

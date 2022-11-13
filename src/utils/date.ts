@@ -24,7 +24,7 @@ export type Weeks = {
   fourth: Day[],
   fifth: Day[],
   sixth: Day[]
-}
+};
 
 export const date: Date = {
   numDate,

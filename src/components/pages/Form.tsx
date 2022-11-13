@@ -1,17 +1,10 @@
-import React, { ChangeEvent, memo, useState } from 'react'
+import React, { ChangeEvent, memo, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { IRoute } from '../interfaces/types';
-import styles from '../styles/Form.module.css';
-import { validateDate } from '../utils/utils';
-import Calendar from './calendar/Calendar';
-import Button from './ui/button/Button';
-
-type InputEvent = ChangeEvent<HTMLInputElement>;
-
-type Hidden = {
-  there: 'none' | 'there',
-  back: 'none' | 'back'
-}
+import { Hidden, IRoute } from '../../interfaces/types';
+import styles from '../../styles/Form.module.css';
+import { validateDate } from '../../utils/utils';
+import Calendar from '../calendar/Calendar';
+import Button from '../ui/button/Button';
 
 export default memo(function Form() {
   const navigate = useNavigate();
@@ -21,21 +14,27 @@ export default memo(function Form() {
     dateThere: '',
     dateBack: ''
   });
-
+  const [disable, setDisable] = useState<boolean>(true);
   const [hidden, setHidden] = useState<Hidden>({
     there: 'none',
     back: 'none'
   });
 
-  function inputFromCity(e: InputEvent): void {
+  useEffect(() => {
+    if (route.cityFrom && route.cityWhere && route.dateThere) {
+      setDisable(false);
+    };
+  }, [route.cityFrom, route.cityWhere, route.dateThere]);
+
+  function inputFromCity(e: ChangeEvent<HTMLInputElement>): void {
     setRoute({...route, cityFrom: e.target.value});
   };
 
-  function inputWhereCity(e: InputEvent): void {
+  function inputWhereCity(e: ChangeEvent<HTMLInputElement>): void {
     setRoute({...route, cityWhere: e.target.value});
   };
 
-  function inputThereDate(e: InputEvent): void {
+  function inputThereDate(e: ChangeEvent<HTMLInputElement>): void {
     const date = validateDate(e.target.value);
     console.log(date);
     if (date) {
@@ -43,7 +42,7 @@ export default memo(function Form() {
     };
   };
 
-  function inputBackDate(e: InputEvent): void {
+  function inputBackDate(e: ChangeEvent<HTMLInputElement>): void {
     setRoute({...route, dateBack: e.target.value});
   };
 
@@ -149,7 +148,7 @@ export default memo(function Form() {
         <Button
           text={'Найти билеты'}
           handleClick={() => navigate('/avia/info')}
-          disabled={true}
+          disabled={disable}
           />
       </div>
     </form>
