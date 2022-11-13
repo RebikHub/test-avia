@@ -1,12 +1,14 @@
-import React, { ChangeEvent, memo, useEffect, useState } from 'react'
+import React, { ChangeEvent, memo, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Hidden, IRoute } from '../../interfaces/types';
+import { IHidden, IRoute } from '../../interfaces/types';
 import styles from '../../styles/Form.module.css';
 import { validateDate } from '../../utils/utils';
 import Calendar from '../calendar/Calendar';
+import { Context } from '../RouteProvider';
 import Button from '../ui/button/Button';
 
 export default memo(function Form() {
+  const contextValue = useContext(Context);
   const navigate = useNavigate();
   const [route, setRoute] = useState<IRoute>({
     cityFrom: '',
@@ -15,7 +17,7 @@ export default memo(function Form() {
     dateBack: ''
   });
   const [disable, setDisable] = useState<boolean>(true);
-  const [hidden, setHidden] = useState<Hidden>({
+  const [hidden, setHidden] = useState<IHidden>({
     there: 'none',
     back: 'none'
   });
@@ -36,7 +38,6 @@ export default memo(function Form() {
 
   function inputThereDate(e: ChangeEvent<HTMLInputElement>): void {
     const date = validateDate(e.target.value);
-    console.log(date);
     if (date) {
       setRoute({...route, dateThere: e.target.value});
     };
@@ -70,6 +71,11 @@ export default memo(function Form() {
 
   function getDateBack(date: string) {
     setRoute({...route, dateBack: date});
+  };
+
+  function submit() {
+    contextValue?.saveRoute(route);
+    navigate('/avia/info');
   };
 
   return (
@@ -146,8 +152,9 @@ export default memo(function Form() {
       </div>
       <div className={styles.button}>
         <Button
+          type={'button'}
           text={'Найти билеты'}
-          handleClick={() => navigate('/avia/info')}
+          handleClick={submit}
           disabled={disable}
           />
       </div>

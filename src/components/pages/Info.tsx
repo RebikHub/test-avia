@@ -1,24 +1,13 @@
-import React, { useState } from 'react';
+import React, { memo, useContext, useState } from 'react';
+import { ITime } from '../../interfaces/types';
 import styles from '../../styles/Info.module.css';
+import ChangeClock from '../ChangeClock';
 import FlightRoute from '../FlightRoute';
+import { Context } from '../RouteProvider';
 
-type Time = {
-  first: {
-    from: string,
-    to: string
-  },
-  second: {
-    from: string,
-    to: string,
-  },
-  third: {
-    from: string,
-    to: string
-  }
-};
-
-export default function Info() {
-  const [time, setTime] = useState<Time>({
+export default memo(function Info() {
+  const contextValue = useContext(Context);
+  const [time, setTime] = useState<ITime>({
     first: {
       from: '09:20',
       to: '11:05'
@@ -31,6 +20,10 @@ export default function Info() {
       from: '',
       to: ''
     }
+  });
+  const [clock, setClock] = useState<{from: string, to: string}>({
+    from: '09:20',
+    to: '11:05'
   });
 
   function handleTimeFirst() {
@@ -47,7 +40,11 @@ export default function Info() {
         from: '',
         to: ''
       }
-    })
+    });
+    setClock({
+      from: '09:20',
+      to: '11:05'
+    });
   };
 
   function handleTimeSecond() {
@@ -64,7 +61,11 @@ export default function Info() {
         from: '',
         to: ''
       }
-    })
+    });
+    setClock({
+      from: '10:20',
+      to: '12:05',
+    });
   };
 
   function handleTimeThird() {
@@ -81,40 +82,55 @@ export default function Info() {
         from: '11:20',
         to: '13:05'
       }
-    })
+    });
+    setClock({
+      from: '11:20',
+      to: '13:05'
+    });
   };
 
   return (
     <div className={styles.info}>
       <div className={styles.flight}>
-        {true ?
-          <FlightRoute>
-            <div className={styles.times}>
-              <div
-                className={time.first.from ? styles.timeClicked : styles.time}
-                onClick={handleTimeFirst}
-                >09:20 - 11:05</div>
-              <div
-                className={time.second.from ? styles.timeClicked : styles.time}
-                onClick={handleTimeSecond}
-                >10:20 - 12:05</div>
-              <div
-                className={time.third.from ? styles.timeClicked : styles.time}
-                onClick={handleTimeThird}
-                >11:20 - 13:05</div>
-            </div>
-          </FlightRoute>
+        {contextValue?.route.dateBack ?
+          <>
+            <FlightRoute
+              children={null}
+              cityFrom={contextValue.route.cityFrom}
+              cityTo={contextValue.route.cityWhere}
+              date={contextValue.route.dateThere}
+              clockFrom={clock.from}
+              clockTo={clock.to}/>
+            <span className={styles.flightLine}/>
+            <FlightRoute
+              children={null}
+              cityFrom={contextValue.route.cityWhere}
+              cityTo={contextValue.route.cityFrom}
+              date={contextValue.route.dateBack}
+              clockFrom={clock.from}
+              clockTo={clock.to}/>
+            <span className={styles.flightLine}/>
+          </>
         : 
           <>
-            <FlightRoute children={null}/>
-            <span className={styles.flightLine}/>
-            <FlightRoute children={null}/>
+          <FlightRoute
+            cityFrom={contextValue?.route.cityFrom}
+            cityTo={contextValue?.route.cityWhere}
+            date={contextValue?.route.dateThere}
+            clockFrom={clock.from}
+            clockTo={clock.to}>
+            <div className={styles.times}>
+              <ChangeClock text={'09:20 - 11:05'} time={time.first.from} handleTime={handleTimeFirst}/>
+              <ChangeClock text={'10:20 - 12:05'} time={time.second.from} handleTime={handleTimeSecond}/>
+              <ChangeClock text={'11:20 - 13:05'} time={time.third.from} handleTime={handleTimeThird}/>
+            </div>
+          </FlightRoute>
           </>}
       </div>
       <div className={styles.price}>
-        <p className={styles.priceText}>{4150}</p>
+        <p className={styles.priceText}>{contextValue?.route.dateBack ? 9300 : 4150}</p>
         <span>&#8381;</span>
       </div>
     </div>
   );
-};
+});

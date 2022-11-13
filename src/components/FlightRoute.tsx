@@ -2,10 +2,16 @@ import React, { ReactNode } from 'react';
 import styles from '../styles/Info.module.css';
 
 type Props = {
-  children: ReactNode | null
+  children: ReactNode | null,
+  cityFrom: string | undefined,
+  cityTo: string | undefined,
+  date: string | undefined,
+  clockFrom: string,
+  clockTo: string
 };
 
-export default function FlightRoute({children}: Props) {
+export default function FlightRoute({children, cityFrom, cityTo, date, clockFrom, clockTo}: Props) {
+  
   return (
     <div className={styles.main}>
       <div>
@@ -17,9 +23,9 @@ export default function FlightRoute({children}: Props) {
         <div className={styles.route}>
 
         <div className={styles.routeFlight}>
-          <p className={styles.routeTime}>09:20</p>
-          <p className={styles.city}>Москва</p>
-          <p className={styles.date}>19.05.2022</p>
+          <p className={styles.routeTime}>{clockFrom}</p>
+          <p className={styles.city}>{cityFrom}</p>
+          <p className={styles.date}>{date}</p>
         </div>
 
         <div>
@@ -36,9 +42,9 @@ export default function FlightRoute({children}: Props) {
         </div>
 
         <div className={styles.routeFlight}>
-          <p className={styles.routeTime}>11:05</p>
-          <p className={styles.city}>Ростов на Дону</p>
-          <p className={styles.date}>19.05.2022</p>
+          <p className={styles.routeTime}>{clockTo}</p>
+          <p className={styles.city}>{cityTo}</p>
+          <p className={styles.date}>{date}</p>
         </div>
 
         <div className={styles.bags}>
